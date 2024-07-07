@@ -2,6 +2,33 @@
 #include <bits/stdc++.h> 
 using namespace std; 
 
+//animated swapping of the function 
+void swap2(int i, int j, int x, int y, int size) {
+    int steps = 20; 
+    int dx = (j - i) / steps; 
+    int dy1 = (y - x) / steps; 
+    int dy2 = (x - y) / steps; 
+    
+    for (int step = 0; step < steps; ++step) {
+        setcolor(BLACK);
+        line(i + step * dx, size, i + step * dx, size - (x + step * dy1));
+        line(j - step * dx, size, j - step * dx, size - (y + step * dy2));
+        
+        setcolor(WHITE);
+        line(i + (step + 1) * dx, size, i + (step + 1) * dx, size - (x + (step + 1) * dy1));
+        line(j - (step + 1) * dx, size, j - (step + 1) * dx, size - (y + (step + 1) * dy2));
+        delay(10);
+    }
+    
+    setcolor(BLACK);
+    line(i + steps * dx, size, i + steps * dx, size - (x + steps * dy1));
+    line(j - steps * dx, size, j - steps * dx, size - (y + steps * dy2));
+    
+    setcolor(WHITE);
+    line(i, size, i, size - y);
+    line(j, size, j, size - x);
+}
+
 void swap(int i, int j, int x, int y, int len){ 
 	//marking the lines to be swapped
 	setcolor(RED);
